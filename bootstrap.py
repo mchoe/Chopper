@@ -2,8 +2,6 @@
 #!/usr/bin/env python
 import subprocess
 
-# sudo apt-get update
-
 class colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -14,7 +12,7 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print colors.HEADER + """
+print(colors.HEADER + """
 
   /$$$$$$  /$$   /$$  /$$$$$$  /$$$$$$$  /$$$$$$$  /$$$$$$$$ /$$$$$$$
  /$$__  $$| $$  | $$ /$$__  $$| $$__  $$| $$__  $$| $$_____/| $$__  $$
@@ -26,7 +24,7 @@ print colors.HEADER + """
  \______/ |__/  |__/ \______/ |__/      |__/      |________/|__/  |__/
 
 
-""" + colors.ENDC
+""" + colors.ENDC)
 
 def sub(label, execute):
     if label != "":
@@ -34,21 +32,20 @@ def sub(label, execute):
     subprocess.call(execute, shell=True)
 
 def pip(execute):
-    sub("Installing %s" % execute, "sudo -H pip install %s" % execute)
+    sub("Installing %s" % execute, "sudo -H pip3 install %s" % execute)
 
 
 def printHeader(text):
-    print colors.OKBLUE + """
+    print(colors.OKBLUE + """
 --------------------------------------------------------------------------------
 %s
 --------------------------------------------------------------------------------
-""" % text + colors.ENDC
+""" % text + colors.ENDC)
 
 
 
 sub("Updating apt-get", "sudo apt-get update")
 sub("Installing git", "sudo apt-get install git-all")
-sub("Installing pip", "wget https://bootstrap.pypa.io/get-pip.py && (sudo -H python get-pip.py; rm get-pip.py)")
 sub("Installing postgresql", "sudo apt-get install postgresql postgresql-contrib")
 sub("Installing nano", "sudo apt-get install nano")
 pip("virtualenv")
